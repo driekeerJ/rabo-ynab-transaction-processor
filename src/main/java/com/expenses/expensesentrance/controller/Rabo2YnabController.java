@@ -48,7 +48,7 @@ public class Rabo2YnabController {
             return REDIRECT;
         }
 
-        System.out.printf("Processing for budget: %s account: %s", budget, account);
+        log.info("Processing for budget: {} account: {}", budget, account);
         final Data result = orchestratorService.processTransactions(file, token, budget, account);
         redirectAttributes.addFlashAttribute(FLASH_ATTRIBUTE_LABEL, "You have successfully uploaded the transaction file. In total " + result.getData()
                 .getTransactions()
