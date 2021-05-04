@@ -19,5 +19,6 @@ public class ProcessedTransactionDto {
     private String memo;
     private String importId;
     private List<SubTransactionDto> subtransactions;
+    private String matched_transaction_id;
 
 }

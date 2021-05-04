@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import com.expenses.expensesentrance.client.mapper.FromDataDtoMapper;
 import com.expenses.expensesentrance.client.mapper.ToTransactionsDtoMapper;
 import com.expenses.expensesentrance.client.model.DataDto;
+import com.expenses.expensesentrance.client.model.ProcessedTransactionDto;
 import com.expenses.expensesentrance.client.model.TransactionsDto;
 import com.expenses.expensesentrance.common.model.Data;
 import com.expenses.expensesentrance.common.model.Transaction;
@@ -40,6 +41,13 @@ public class YnabClient {
 
         final HttpEntity<TransactionsDto> entity = new HttpEntity<>(request, headers);
 
-        return fromDataDtoMapper.map(requireNonNull(restTemplate.postForObject(ynabUrl, entity, DataDto.class)));
+        final DataDto dataDto = restTemplate.postForObject(ynabUrl, entity, DataDto.class);
+        System.out.printf("Send %d number of records to YNAB", entity.getBody().getTransactions().size());
+        final List<ProcessedTransactionDto> processedTranctions = dataDto.getData()
+                .getTransactions();
+        System.out.printf("Number of processed transactions: %d", processedTranctions.size());
+        System.out.printf("Number of matched transactions: %d", processedTranctions.stream().filter(processedTransactionDto -> processedTransactionDto.getMatched_transaction_id() != null).count());
+        System.out.printf("Number of duplicated transactions: %d", dataDto.getData().getDuplicate_import_ids().size());
+        return fromDataDtoMapper.map(requireNonNull(dataDto));
     }
 }

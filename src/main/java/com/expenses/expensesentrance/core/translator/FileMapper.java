@@ -26,6 +26,7 @@ public class FileMapper {
                 valueSeparatedList.add(line);
             }
         }
+        System.out.printf("Received %d number of records", valueSeparatedList.size());
         return valueSeparatedList;
     }
 

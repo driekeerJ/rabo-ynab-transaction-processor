@@ -15,4 +15,6 @@ public class ProcessedDataDto {
     private List<String> transactionIds;
 
     private List<ProcessedTransactionDto> transactions;
+
+    private List<String> duplicate_import_ids;
 }
