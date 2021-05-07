@@ -50,13 +50,13 @@ public class Rabo2YnabController {
 
         log.info("Processing for budget: {} account: {}", budget, account);
         final Data result = orchestratorService.processTransactions(file, token, budget, account);
-        redirectAttributes.addFlashAttribute(FLASH_ATTRIBUTE_LABEL, buildProcessedString(result));
+        redirectAttributes.addFlashAttribute(FLASH_ATTRIBUTE_LABEL, "Het verwerken was succesvol!");
+        redirectAttributes.addFlashAttribute("receivedRecords", "Het aantal ontvangen records: " + result.getNumberOfRecordsReceived());
+        redirectAttributes.addFlashAttribute("processedRecords", "Het aantal verwerkte records: " + result.getNumberOfRecordsProcessed());
+        redirectAttributes.addFlashAttribute("duplicateRecords", "Het aantal duplicate records: " + result.getNumberOfRecordsDuplicated());
+        redirectAttributes.addFlashAttribute("matchedRecords", "Het aantal gematchte records: " + result.getNumberOfRecordsMatched());
         log.info("File is processed");
         return REDIRECT;
-    }
-
-    private Object buildProcessedString(final Data result) {
-        return String.format("Het verwerken was succesvol!%nHet aantal ontvangen records: %d%nHet aantal verwerkte records: %d%nHet aantal duplicate records: %d%nHet aantal gematchte records: %d", result.getNumberOfRecordsReceived(), result.getNumberOfRecordsProcessed(), result.getNumberOfRecordsDuplicated(), result.getNumberOfRecordsMatched());
     }
 
     private boolean hasInvalidInput(final String token, final String budget, final String account) {
