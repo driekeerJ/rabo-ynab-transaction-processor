@@ -19,6 +19,7 @@ public class FromProcessedDataDtoMapper implements Mapper<ProcessedDataDto, Proc
         return ProcessedTransactionData.builder()
                 .transactionIds(input.getTransactionIds())
                 .transactions(fromProcessedTransactionDtoMapper.map(input.getTransactions()))
+                .duplicatedTransactionIds(input.getDuplicate_import_ids())
                 .build();
     }
 }

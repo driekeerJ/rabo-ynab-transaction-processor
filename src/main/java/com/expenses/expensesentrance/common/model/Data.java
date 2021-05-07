@@ -7,6 +7,13 @@ import lombok.Getter;
 @Builder
 public class Data {
 
-    private ProcessedTransactionData data;
+    private final ProcessedTransactionData data;
 
+    private final int numberOfRecordsReceived;
+
+    private final int numberOfRecordsProcessed;
+
+    private final long numberOfRecordsMatched;
+
+    private final int numberOfRecordsDuplicated;
 }

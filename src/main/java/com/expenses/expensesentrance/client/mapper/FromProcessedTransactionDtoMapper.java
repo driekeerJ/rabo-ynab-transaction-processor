@@ -23,6 +23,7 @@ public class FromProcessedTransactionDtoMapper implements Mapper<ProcessedTransa
                 .importId(input.getImportId())
                 .memo(input.getMemo())
                 .subtransactions(fromSubTransactionDtoMapper.map(input.getSubtransactions()))
+                .matchedTransactionId(input.getMatched_transaction_id())
                 .build();
     }
 }

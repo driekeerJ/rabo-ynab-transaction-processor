@@ -10,11 +10,12 @@ import lombok.Getter;
 @Builder
 public class ProcessedTransaction {
 
-    private String id;
-    private LocalDate date;
-    private double amount;
-    private String memo;
-    private String importId;
-    private List<SubTransaction> subtransactions;
+    private final String id;
+    private final LocalDate date;
+    private final double amount;
+    private final String memo;
+    private final String importId;
+    private final List<SubTransaction> subtransactions;
+    private final String matchedTransactionId;
 
 }

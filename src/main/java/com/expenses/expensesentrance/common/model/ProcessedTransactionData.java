@@ -13,4 +13,6 @@ public class ProcessedTransactionData {
 
     private List<ProcessedTransaction> transactions;
 
+    private List<String> duplicatedTransactionIds;
+
 }
