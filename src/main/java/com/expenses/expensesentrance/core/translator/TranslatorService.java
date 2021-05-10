@@ -3,6 +3,7 @@ package com.expenses.expensesentrance.core.translator;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,8 +20,6 @@ public class TranslatorService {
 
     private final FileMapper fileMapper;
 
-    private final TransactionMapper transactionMapper;
-
     public List<Transaction> translate(final MultipartFile file) {
         List<Map<String, String>> bankSpecificTransactions = null;
         try {
@@ -28,6 +27,9 @@ public class TranslatorService {
         } catch (IOException e) {
             log.error(e.getMessage());
         }
-        return transactionMapper.map(bankSpecificTransactions);
+        assert bankSpecificTransactions != null;
+        return bankSpecificTransactions.stream()
+                .map(Transaction::new)
+                .collect(Collectors.toList());
     }
 }
