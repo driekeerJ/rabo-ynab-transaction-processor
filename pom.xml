@@ -14,7 +14,7 @@
 	<name>rabo-2-ynab-transaction-processor</name>
 
 	<properties>
-		<java.version>1.14</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
