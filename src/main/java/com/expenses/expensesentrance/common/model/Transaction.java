@@ -53,12 +53,13 @@ public class Transaction {
     }
 
     private Map<ColumnType, String> buildRabobankCreditCardColumnNameMap() {
+        final String description = "Omschrijving";
         return Map.of(
                 ACCOUNT_LABEL,"Creditcard Nummer",
                 AMOUNT_LABEL, "Bedrag",
-                COUNTERPARTY_ACCOUNT_LABEL, "Tegenrekening IBAN",
-                COUNTERPARTY_NAME_LABEL, "Transactiereferentie",
-                DESCRIPTION_LABEL, "Omschrijving",
+                COUNTERPARTY_ACCOUNT_LABEL, description,
+                COUNTERPARTY_NAME_LABEL, description,
+                DESCRIPTION_LABEL, description,
                 DATE_LABEL, "Datum"
         );
     }
