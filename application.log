@@ -1,0 +1,15 @@
+2022-12-12 10:31:10,277 [main] [ExpensesEntranceApplication] [INFO] Starting ExpensesEntranceApplication on MBP-van-Jeroen.fritz.box with PID 31073 (/Users/jeroenvanderwal/git/rabo-ynab-transaction-processor/target/classes started by jeroenvanderwal in /Users/jeroenvanderwal/git/rabo-ynab-transaction-processor) 
+2022-12-12 10:31:10,279 [main] [ExpensesEntranceApplication] [INFO] No active profile set, falling back to default profiles: default 
+2022-12-12 10:31:10,973 [main] [TomcatWebServer] [INFO] Tomcat initialized with port(s): 8080 (http) 
+2022-12-12 10:31:10,983 [main] [Http11NioProtocol] [INFO] Initializing ProtocolHandler ["http-nio-8080"] 
+2022-12-12 10:31:10,990 [main] [StandardService] [INFO] Starting service [Tomcat] 
+2022-12-12 10:31:10,991 [main] [StandardEngine] [INFO] Starting Servlet engine: [Apache Tomcat/9.0.17] 
+2022-12-12 10:31:11,069 [main] [[/]] [INFO] Initializing Spring embedded WebApplicationContext 
+2022-12-12 10:31:11,069 [main] [ContextLoader] [INFO] Root WebApplicationContext: initialization completed in 763 ms 
+2022-12-12 10:31:11,218 [main] [ThreadPoolTaskExecutor] [INFO] Initializing ExecutorService 'applicationTaskExecutor' 
+2022-12-12 10:31:11,306 [main] [WelcomePageHandlerMapping] [INFO] Adding welcome page template: index 
+2022-12-12 10:31:11,350 [main] [Http11NioProtocol] [INFO] Starting ProtocolHandler ["http-nio-8080"] 
+2022-12-12 10:31:11,373 [main] [TomcatWebServer] [INFO] Tomcat started on port(s): 8080 (http) with context path '' 
+2022-12-12 10:31:11,376 [main] [ExpensesEntranceApplication] [INFO] Started ExpensesEntranceApplication in 1.342 seconds (JVM running for 1.785) 
+2022-12-12 10:31:11,377 [main] [ExpensesEntranceApplication] [INFO] Started application 
+2022-12-12 10:31:34,539 [Thread-2] [ThreadPoolTaskExecutor] [INFO] Shutting down ExecutorService 'applicationTaskExecutor' 

@@ -12,10 +12,11 @@ import com.expenses.expensesentrance.core.orchestrator.OrchestratorService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
-@Log4j2
+@Slf4j
 public class Rabo2YnabController {
 
     private final OrchestratorService orchestratorService;
@@ -48,7 +49,7 @@ public class Rabo2YnabController {
             return REDIRECT;
         }
 
-        System.out.printf("Processing for budget: %s account: %s", budget, account);
+        log.info("Processing for budget: {} account: {}", budget, account);
         final Data result = orchestratorService.processTransactions(file, token, budget, account);
         redirectAttributes.addFlashAttribute(FLASH_ATTRIBUTE_LABEL, "You have successfully uploaded the transaction file. In total " + result.getData()
                 .getTransactions()

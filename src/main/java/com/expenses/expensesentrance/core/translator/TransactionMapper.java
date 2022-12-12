@@ -19,23 +19,35 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class TransactionMapper implements Mapper<Map<String, String>, Transaction> {
 
-    private static final String ACCOUNT_LABEL = "IBAN/BBAN";
     private static final String AMOUNT_LABEL = "Bedrag";
-    private static final String COUNTERPARTY_ACCOUNT_LABEL = "Tegenrekening IBAN/BBAN";
-    private static final String COUNTERPARTY_NAME_LABEL = "Naam tegenpartij";
-    private static final String DESCRIPTION_LABEL = "Omschrijving-1";
     private static final String DATE_LABEL = "Datum";
+    private static String accountLabel = "IBAN/BBAN";
+    private static String counterpartyAcountLabel = "Tegenrekening IBAN/BBAN";
+    private static String counterPartyNameLabel = "Naam tegenpartij";
+    private static String descriptionLabel = "Omschrijving-1";
 
     @Override
     public Transaction map(final Map<String, String> bankSpecificTransaction) {
+
+        if (isCreditCard(bankSpecificTransaction)) {
+            accountLabel = "Productnaam";
+            counterpartyAcountLabel = "Omschrijving";
+            counterPartyNameLabel = "Omschrijving";
+            descriptionLabel = "Omschrijving";
+        }
+
         return Transaction.builder()
-                .account(bankSpecificTransaction.get(ACCOUNT_LABEL))
+                .account(bankSpecificTransaction.get(accountLabel))
                 .amount(fetchDoubleAmount(bankSpecificTransaction.get(AMOUNT_LABEL)))
-                .counterPartyAccount(bankSpecificTransaction.get(COUNTERPARTY_ACCOUNT_LABEL))
-                .counterPartyName(bankSpecificTransaction.get(COUNTERPARTY_NAME_LABEL))
-                .description(bankSpecificTransaction.get(DESCRIPTION_LABEL))
+                .counterPartyAccount(bankSpecificTransaction.get(counterpartyAcountLabel))
+                .counterPartyName(bankSpecificTransaction.get(counterPartyNameLabel))
+                .description(bankSpecificTransaction.get(descriptionLabel))
                 .date(LocalDate.parse(bankSpecificTransaction.get(DATE_LABEL)))
                 .build();
+    }
+
+    private boolean isCreditCard(final Map<String, String> bankSpecificTransaction) {
+        return bankSpecificTransaction.get("Productnaam").equals("RaboCard Mastercard");
     }
 
     private double fetchDoubleAmount(final String doubleInString) {
@@ -45,7 +57,8 @@ public class TransactionMapper implements Mapper<Map<String, String>, Transactio
         double amount = 0;
 
         try {
-            amount = format.parse(doubleInString).doubleValue();
+            amount = format.parse(doubleInString)
+                    .doubleValue();
         } catch (ParseException pe) {
             log.warn(pe.getMessage());
         }

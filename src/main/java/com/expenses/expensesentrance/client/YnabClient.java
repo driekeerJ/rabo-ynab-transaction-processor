@@ -18,10 +18,10 @@ import com.expenses.expensesentrance.common.model.Data;
 import com.expenses.expensesentrance.common.model.Transaction;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Log4j2
+@Slf4j
 @RequiredArgsConstructor
 public class YnabClient {
 
@@ -42,12 +42,18 @@ public class YnabClient {
         final HttpEntity<TransactionsDto> entity = new HttpEntity<>(request, headers);
 
         final DataDto dataDto = restTemplate.postForObject(ynabUrl, entity, DataDto.class);
-        System.out.printf("Send %d number of records to YNAB", entity.getBody().getTransactions().size());
+        log.info("Send {} number of records to YNAB", entity.getBody()
+                .getTransactions()
+                .size());
         final List<ProcessedTransactionDto> processedTranctions = dataDto.getData()
                 .getTransactions();
-        System.out.printf("Number of processed transactions: %d", processedTranctions.size());
-        System.out.printf("Number of matched transactions: %d", processedTranctions.stream().filter(processedTransactionDto -> processedTransactionDto.getMatched_transaction_id() != null).count());
-        System.out.printf("Number of duplicated transactions: %d", dataDto.getData().getDuplicate_import_ids().size());
+        log.info("Number of processed transactions: {}", processedTranctions.size());
+        log.info("Number of matched transactions: {}", processedTranctions.stream()
+                .filter(processedTransactionDto -> processedTransactionDto.getMatched_transaction_id() != null)
+                .count());
+        log.info("Number of duplicated transactions: {}", dataDto.getData()
+                .getDuplicate_import_ids()
+                .size());
         return fromDataDtoMapper.map(requireNonNull(dataDto));
     }
 }

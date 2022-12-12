@@ -12,7 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.opencsv.CSVReaderHeaderAware;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class FileMapper {
 
     public List<Map<String, String>> mapFile(MultipartFile file) throws IOException {
@@ -26,7 +29,7 @@ public class FileMapper {
                 valueSeparatedList.add(line);
             }
         }
-        System.out.printf("Received %d number of records", valueSeparatedList.size());
+        log.info("Received {} number of records", valueSeparatedList.size());
         return valueSeparatedList;
     }
 
