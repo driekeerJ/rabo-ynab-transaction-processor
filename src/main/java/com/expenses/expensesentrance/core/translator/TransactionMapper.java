@@ -47,7 +47,8 @@ public class TransactionMapper implements Mapper<Map<String, String>, Transactio
     }
 
     private boolean isCreditCard(final Map<String, String> bankSpecificTransaction) {
-        return bankSpecificTransaction.get("Productnaam").equals("RaboCard Mastercard");
+        final String productnaam = bankSpecificTransaction.get("Productnaam");
+        return productnaam != null && productnaam.equals("RaboCard Mastercard");
     }
 
     private double fetchDoubleAmount(final String doubleInString) {

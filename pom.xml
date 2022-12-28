@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.rabo2ynabtransactionprocessor</groupId>
 	<artifactId>rabo-2-ynab-transaction-processor</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>rabo-2-ynab-transaction-processor</name>
 
 	<properties>
